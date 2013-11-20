@@ -5,17 +5,17 @@ FactoryGirl.define do
     author 'John Gruber'
     summary 'The biggest problem with the NSA scandal is the lack of accountability. ★'
     content '<p>The biggest problem with the NSA scandal is the lack of accountability.</p>\n\n<div>\n<a  title=\'Permanent link to ‘&#8216;LOVEINT&#8217;’\'  href=\'http//daringfireball.net/linked/2013/08/23/loveint\'>&nbsp;★&nbsp;</a>\n</div>'
-    sequence(:published)    { |n| "2013-08-24 012#{n}10" }
-    sequence(:updated)      { |n| "2013-08-24 013#{n}22" }
-    sequence(:created_at)   { |n| "2013-08-24 124#{n}15" }
-    sequence(:updated_at)   { |n| "2013-08-24 124#{n}15" }
-    entry_id 'tagdaringfireball.net,2013/linked//6.28162'
-    sequence(:public_id) { |n| "c59fc9641caf56dccceee33d2fd3d9a2b07d02c#{n}" }
+    sequence(:published)     { |n| "2013-08-24 012#{n}10" }
+    sequence(:updated)       { |n| "2013-08-24 013#{n}22" }
+    sequence(:created_at)    { |n| "2013-08-24 124#{n}15" }
+    sequence(:updated_at)    { |n| "2013-08-24 124#{n}15" }
+    sequence(:entry_id)
+    sequence(:public_id)     { |n| "c59fc9641caf56dccceee33d2fd3d9a2b07d02c#{n}" }
     sequence(:old_public_id) { |n| "c59fc9641caf56dccceee33d2fd3d9a2b07d02c#{n}" }
     starred_entries_count 0
     association :feed, factory: :feed
   end
-  
+
   factory :unread_entry do
   end
 
@@ -30,36 +30,17 @@ FactoryGirl.define do
     subscriptions_count 1
   end
 
-  #StarredEntry.create([
-  #  { :user_id => 1, :feed_id => 1, :entry_id => 3, :published => "2013-08-23 21:53:47", :created_at => "2013-08-24 12:41:20", :updated_at => "2013-08-24 12:41:20" },
-  #  { :user_id => 1, :feed_id => 1, :entry_id => 7, :published => "2013-08-22 21:14:35", :created_at => "2013-08-24 12:41:22", :updated_at => "2013-08-24 12:41:22" }
-  #])
-
   factory :starred_entry do
   end
-  
-  #Subscription.create([
-  #  { :user_id => 1, :feed_id => 1, :created_at => "2013-08-24 12:41:15", :updated_at => "2013-08-24 12:41:15", :title => nil, :view_inline => false },
-  #  { :user_id => 1, :feed_id => 2, :created_at => "2013-08-24 12:46:52", :updated_at => "2013-08-24 12:46:52", :title => nil, :view_inline => false }
-  #])
 
   factory :subscription do
   end
-  
-  #Tag.create([
-  #  { :name => "Favorites", :created_at => "2013-08-24 12:41:31", :updated_at => "2013-08-24 12:41:31" }
-  #])
 
   factory :tag do
     sequence(:name) { |n| "Tag #{n}"}
     sequence(:created_at)   { |n| "2013-08-24 12:4#{n}:31" }
     sequence(:updated_at)   { |n| "2013-08-24 12:4#{n}:31" }
-    
   end
-  
-  #Tagging.create([
-  #  { :feed_id => 1, :user_id => 1, :created_at => "2013-08-24 12:41:31", :updated_at => "2013-08-24 12:41:31", :tag_id => 1 }
-  #])
 
   factory :tagging do
   end
@@ -106,7 +87,7 @@ FactoryGirl.define do
     update_auth_token true
     association :plan, factory: :basic_monthly_plan_2
   end
-  
+
   factory :admin_user, class: User do
     email 'admin@example.com'
     password 'passw0rd'
